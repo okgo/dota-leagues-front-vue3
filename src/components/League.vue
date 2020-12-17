@@ -1,10 +1,15 @@
 <template>
-  <div class="league border">
+  <div class="league border relative">
+    <div
+      v-if="league.is_live"
+      class="absolute top-0 left-0 w-full h-8 live">
+      <div class="inline-block px-1 leading-8 badge"><b>&bull;</b>live</div>
+    </div>
     <div
       class="image h-60"
       :style="resolveBg(league.league_id)"></div>
     <div class="p-5">
-      <h2 class="text-2xl mb-1">{{ league.name }}</h2>
+      <h2 class="text-2xl mb-1 font-bold">{{ league.name }}</h2>
       <div>
         <a
           class="text-sm"
@@ -67,13 +72,23 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scopped lang="scss">
 .league {
   a {
     padding-left: 18px;
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEOSURBVHgBhZLbjcIwEEXjyAXQwaaDtfKQ8rfeDmiBCoAKEBUgOqAD0gGhgMShA0pASv7y4k7EiGCCGMlyxvbx3DuOcL5EGIa667o/IcQly7KE1sSnw1rrWVVVJwAegLTve4XlG/J/8QUoMNZFUdxoPQiCE+BUTkEAlgTkeb6wtvYYu7cK4zyOYw+eVpyj0tz3fePakmiDgbquSeIv548qB2l7gKSEAdJPEq18P0BlWe4AXI0x9oHBU9M0y3HuKKVmkNRj9jiH7s2URw7yxBtDW6m9uHFLFaHAsMcXCIeumFMp5WbcNZbIf8E4hseNoki1bXvEy9MFNOYAkol3ekIPL57ruhqfP1QBTTk7H+IOVR/CHTJfLSsAAAAASUVORK5CYII=');
     background-repeat: no-repeat;
     background-position: left center;
+  }
+
+  .live {
+    background: #f2f2f2;
+    font-family: 'Fira Code', monospace;
+  }
+
+  .badge {
+    background: #f2c94c;
+    color: #fff;
   }
 }
 </style>
