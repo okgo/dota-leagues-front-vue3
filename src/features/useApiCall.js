@@ -1,15 +1,17 @@
 import{ toRefs, reactive } from 'vue'
 
-export default function (url, options) {
+export default function (url, params) {
   const state = reactive({
     response: {},
     error: null,
     fetching: true
   })
 
+  const objectToQueryString = obj => Object.keys(obj).map(key => key + '=' + obj[key]).join('&')
+
   const fetchData = async () => {
     try {
-      const res = await fetch(url, options)
+      const res = await fetch(params ? `${url}?${objectToQueryString(params)}` : url)
       const json = await res.json()
 
       state.response = json

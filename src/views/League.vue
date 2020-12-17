@@ -16,7 +16,7 @@ export default {
   setup() {
     let league = ref({})
     const route = useRoute()
-    const { response, error, fetching } = useApiCall(`${process.env.VUE_APP_API_URL}leagues/${route.params.id}`, {})
+    const { response, error, fetching } = useApiCall(`${process.env.VUE_APP_API_URL}leagues/${route.params.id}`)
 
     league = response
 
